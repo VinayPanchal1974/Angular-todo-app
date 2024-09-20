@@ -1,9 +1,15 @@
 <div>
   <button (click)="onSelectUser()">
-    <img
-      [src]="userImage()"
-      [alt]="selectedUser().name"
-    />
-    <span>{{ selectedUser().name }}</span>
+    <img [src]="userImage" [alt]="name" />
+    <span>{{ name }}</span>
   </button>
 </div>
+
+<!-- Signal Way -->
+<!-- <div>
+  <button (click)="onSelectUser()">
+    <img [src]="userImage()" [alt]="name()" />
+    <span>{{ name() }}</span>
+  </button>
+</div> -->
+
