@@ -1,20 +1,71 @@
 <app-header></app-header>
 <main>
   <ul id="users">
+    @for(user1 of users; track user1.id){
     <li>
-      <app-user [name]="users[0].name" [avatar]="users[0].avatar" />
+      <app-user [user]="user1" (select)="onSelectUser1($event)" />
+    </li>
+    }
+    <!-- Legacy way -->
+    <!-- <li *@ngFor="let user of users">
+      <app-user [user]="user1" (select)="onSelectUser1($event)" />
+    </li> -->
+  </ul>
+  
+  @if (selectedUser){
+  <app-tasks [name]="selectedUser.name" />
+  } @else{
+  <p id="fallback">Select a user to see their tasks!</p>
+  }
+  <!-- Legacy way -->
+  <!-- <app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser!.name" />
+  <ng-template>
+    <p id="fallback">Select a user to see their tasks!</p>
+  </ng-template> -->
+</main>
+
+<!-- <main>
+  <ul id="users">
+    <li>
+      <app-user
+        [id]="users[0].id"
+        [name]="users[0].name"
+        [avatar]="users[0].avatar"
+        (select)="onSelectUser1($event)"
+      />
     </li>
     <li>
-      <app-user [name]="users[1].name" [avatar]="users[1].avatar" />
+      <app-user
+        [id]="users[1].id"
+        [name]="users[1].name"
+        [avatar]="users[1].avatar"
+        (select)="onSelectUser1($event)"
+      />
     </li>
     <li>
-      <app-user [name]="users[2].name" [avatar]="users[2].avatar" />
+      <app-user
+        [id]="users[2].id"
+        [name]="users[2].name"
+        [avatar]="users[2].avatar"
+        (select)="onSelectUser1($event)"
+      />
     </li>
     <li>
-      <app-user [name]="users[3].name" [avatar]="users[3].avatar" />
+      <app-user
+        [id]="users[3].id"
+        [name]="users[3].name"
+        [avatar]="users[3].avatar"
+        (select)="onSelectUser1($event)"
+      />
     </li>
     <li>
-      <app-user [name]="users[4].name" [avatar]="users[4].avatar" />
+      <app-user
+        [id]="users[4].id"
+        [name]="users[4].name"
+        [avatar]="users[4].avatar"
+        (select)="onSelectUser1($event)"
+      />
     </li>
   </ul>
-</main>
+  <app-tasks [name]="selectedUser ? selectedUser.name : '' "/>
+</main> -->

@@ -1,6 +1,22 @@
-import { Component, computed, Input, input } from '@angular/core';
+import { Component, computed, EventEmitter, Input, input, Output, output } from '@angular/core';
 
-// const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
+// ---------------------
+// We can use type or interface  but type can store any data type value but interface are only for objects
+
+// type User = {
+//   id: string,
+//   avatar: string,
+//   name: string
+// }
+
+// OR
+
+interface User {
+  id: string,
+  avatar: string,
+  name: string
+}
+// -----------------------
 
 @Component({
   selector: 'app-user',
@@ -9,11 +25,23 @@ import { Component, computed, Input, input } from '@angular/core';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  @Input({required:true}) name!: string;
-  @Input({required:true}) avatar!: string;
+  // @Input({ required: true }) id!: string;
+  // @Input({ required: true }) name!: string;
+  // @Input({ required: true }) avatar!: string;
+  @Input({ required: true }) user!: User;
+
+  @Output() select = new EventEmitter<string>();
+  // select = output<string>();       // it is the alternative of @Output but we don't use this very often because it belong the latest version of angular
+
   get userImage() {
-    return '/assets/users/' + this.avatar
+    return '/assets/users/' + this.user.avatar
   }
+
+  onSelectUser = () => {
+    this.select.emit(this.user.id)
+  }
+
+
 
   // // Signal Way
   // name = input.required<string>();
@@ -21,6 +49,4 @@ export class UserComponent {
   // userImage = computed(() => {
   //   return '/assets/users/' + this.avatar()
   // })
-
-  onSelectUser = () => { }
 }
