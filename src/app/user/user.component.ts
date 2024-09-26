@@ -1,22 +1,5 @@
 import { Component, computed, EventEmitter, Input, input, Output, output } from '@angular/core';
-
-// ---------------------
-// We can use type or interface  but type can store any data type value but interface are only for objects
-
-// type User = {
-//   id: string,
-//   avatar: string,
-//   name: string
-// }
-
-// OR
-
-interface User {
-  id: string,
-  avatar: string,
-  name: string
-}
-// -----------------------
+import { type User } from "./user.model"
 
 @Component({
   selector: 'app-user',
@@ -29,6 +12,7 @@ export class UserComponent {
   // @Input({ required: true }) name!: string;
   // @Input({ required: true }) avatar!: string;
   @Input({ required: true }) user!: User;
+  @Input({required:true}) selected!:boolean;
 
   @Output() select = new EventEmitter<string>();
   // select = output<string>();       // it is the alternative of @Output but we don't use this very often because it belong the latest version of angular
